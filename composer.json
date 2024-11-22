@@ -9,6 +9,7 @@
       "email": "email@example.com"
     }
   ],
+
   "require": {
     "spipu/html2pdf": "^5.2",
     "ext-sodium": "*",

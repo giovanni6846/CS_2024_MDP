@@ -46,11 +46,11 @@ switch ($action) {
                         switch ($utilisateur["idCategorie_utilisateur"]) {
                             case 1:
                                 $_SESSION["typeConnexionBack"] = "administrateurLogiciel"; //Champ inutile, mais bien pour voir ce qu'il se passe avec des étudiants !
-                                $Vue->setMenu(new Vue_Menu_Administration());
+                                $Vue->setMenu(new Vue_Menu_Administration($_SESSION["idCategorie_utilisateur"]));
                                 break;
                             case 2:
-                                $_SESSION["typeConnexionBack"] = "utilisateurCafe";
-                                $Vue->setMenu(new Vue_Menu_Administration());
+                                $_SESSION["typeConnexionBack"] = "gestionnaireCatalogue";
+                                $Vue->setMenu(new Vue_Menu_Administration($_SESSION["idCategorie_utilisateur"]));
                                 break;
                             case 3:
                                 $_SESSION["typeConnexionBack"] = "entrepriseCliente";
@@ -60,6 +60,12 @@ switch ($action) {
                                 break;
                             case 4:
                                 $_SESSION["typeConnexionBack"] = "salarieEntrepriseCliente";
+                                $_SESSION["idSalarie"] = $utilisateur["idUtilisateur"];
+                                $_SESSION["idEntreprise"] = Modele_Salarie::Salarie_Select_byId($_SESSION["idUtilisateur"])["idEntreprise"];
+                                include "./Controleur/Controleur_Catalogue_client.php";
+                                break;
+                            case 5:
+                                $_SESSION["typeConnexionBack"] = "redacteur";
                                 $_SESSION["idSalarie"] = $utilisateur["idUtilisateur"];
                                 $_SESSION["idEntreprise"] = Modele_Salarie::Salarie_Select_byId($_SESSION["idUtilisateur"])["idEntreprise"];
                                 include "./Controleur/Controleur_Catalogue_client.php";

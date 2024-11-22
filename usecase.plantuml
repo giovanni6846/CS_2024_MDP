@@ -6,7 +6,8 @@ usecase (gérer compte) as UC_Gerer_Compte
 
 usecase (gérer catalogue) as UC_Gerer_Catalogue
 usecase (gérer entreprise cliente) as UC_Gerer_Entreprise
-usecase (gérer commande) as UC_Gerer_Commande
+usecase (gérer commande recu) as UC_Gerer_Commande_Recu
+usecase (gérer commande passee) as UC_Gerer_Commande_Passe
 
 usecase (Modifier  mon mot de passe) as UC_MDP
 usecase (gérer produit) as UC_G_Produit
@@ -16,9 +17,28 @@ usecase (gérer catégorie produit) as UC_G_Cat_Produit
 
 
 actor :administrateur du logiciel: as admin
-actor :utilisateur Cafe: as userCafe
+actor :commercial: as commercial
+actor :redacteur: as redacteur
 actor :entreprise cliente: as entreprise
 actor :salarié entreprise cliente: as salarie
+
+admin --> UC_Gerer_Compte
+admin --> UC_MDP
+
+redacteur --> UC_Gerer_Catalogue
+redacteur --> UC_G_Cat_Produit
+redacteur --> UC_G_Produit
+redacteur --> UC_MDP
+
+commercial --> UC_Gerer_Entreprise
+commercial --> UC_Gerer_Commande_Passe
+commercial --> UC_MDP
+
+entreprise --> UC_Gerer_Compte
+entreprise --> UC_MDP
+
+salarie --> UC_Gerer_Commande_Recu
+salarie --> UC_MDP
 
 
 

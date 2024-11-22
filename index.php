@@ -52,24 +52,14 @@ switch ($typeConnexion) {
     case "utilisateurCafe":
     case "administrateurLogiciel":
         switch ($case) {
-            case "Gerer_CommandeClient":
-            case "Gerer_Commande":
-                include "Controleur/Controleur_Gerer_Commande.php";
-                break;
-            case "Gerer_entreprisesPartenaires":
-                include "Controleur/Controleur_Gerer_entreprisesPartenaires.php";
-                break;
             case "Gerer_utilisateur":
                 include "Controleur/Controleur_Gerer_utilisateur.php";
-                break;
-            case "Gerer_catalogue":
-                include "Controleur/Controleur_Gerer_catalogue.php";
                 break;
             case "Gerer_monCompte":
                 include "Controleur/Controleur_Gerer_monCompte.php";
                 break;
             default:
-                $Vue->setMenu(new Vue_Menu_Administration());
+                $Vue->setMenu(new Vue_Menu_Administration($_SESSION["idCategorie_utilisateur"]));
                 break;
         }
         break;
